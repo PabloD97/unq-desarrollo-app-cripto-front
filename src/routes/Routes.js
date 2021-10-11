@@ -5,6 +5,7 @@ import Home from "../components/Home"
 import Cryptoassets from "../components/Cryptoassets"
 import Register from "../components/Register"
 import Login from "../components/Login";
+import UserList from "../components/UserList";
 
 
 const Routes = () => {
@@ -13,11 +14,14 @@ const Routes = () => {
         <>
             <BrowserRouter>
                 <Switch>
+                    <Route path="/userslist" component= {UserList}/>
+
                     <Route path="/login" component= {Login}/>
                     <Route path="/register" component = {Register}/>
                     <Route path="/home" component= {Home}/>
                     <Route path="/cryptoassets" component= {Cryptoassets}/>
                     <Route path="/" component= {Login}/>
+
                 </Switch>
             </BrowserRouter>
         </>

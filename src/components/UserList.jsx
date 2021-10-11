@@ -21,15 +21,15 @@ const UserList = () => {
 
     return (
         <>
-        <h2>Listado de crypto activos</h2>
+        <h2>Listado de usarios</h2>
         <div>
         <table className="table">
           <thead>
             <tr>
-              <th>Symbol</th>
-              <th>Price USD</th>
-              <th>Price AR</th>
-              <th>Quote Time</th>
+              <th>Id</th>
+              <th>Name</th>
+              <th>LastName</th>
+              <th>Email</th>
 
             </tr>
           </thead>
