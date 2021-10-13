@@ -6,9 +6,15 @@ const Cryptoassets = () => {
 
     const [cryptoassets, setCryptoassets] = useState([]);
 
+    const MINUTE_MS = 600000;
+    
   useEffect(() => {
-    console.log('alive')
     getCryptoassets();
+    const interval = setInterval(() => {
+      getCryptoassets();
+    }, MINUTE_MS);
+  
+    return () => clearInterval(interval); 
   }, []);
 
   const getCryptoassets = () => {
