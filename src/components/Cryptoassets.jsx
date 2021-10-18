@@ -1,4 +1,5 @@
 import React, {  useState, useEffect } from "react";
+import NumberFormat from "react-number-format";
 import { getQuotes } from "../api/cryptoactive.api"
 
 const Cryptoassets = () => {
@@ -44,8 +45,18 @@ const Cryptoassets = () => {
               return (
                 <tr key={crypto.id}>
                   <td>{crypto.symbol}</td>
-                  <td>{crypto.price}</td>
-                  <td>{crypto.priceAr}</td>
+                  <td>{<NumberFormat 
+                        value={crypto.price}
+                        displayType="text"
+                        thousandSeparator={true}
+                        prefix="$"
+                        />}</td>
+                  <td>{<NumberFormat 
+                        value={crypto.priceAr}
+                        displayType="text"
+                        thousandSeparator={true}
+                        prefix="$"
+                        />}</td>
                   <td>{crypto.quoteTime}</td>
                 </tr>
               );
