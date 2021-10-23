@@ -1,0 +1,15 @@
+
+.card{
+          height: 200px;
+         position:"center"
+}
+.body{
+ height: 80px;
+}
+
+.footer{
+    display:"flex";
+justify-content: "center";
+  align-Items: "center";
+
+}
