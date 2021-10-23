@@ -20,10 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d1a010c-b222-41b2-8bab-b7027c30b1c0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Activity.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/TransactionEffect.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Routes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/CardHome.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/Home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +45,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Nelson\Documents\programacion\front\unq-desarrollo-app-cripto-front\src\img" />
+      <recent name="C:\Users\Nelson\Documents\programacion\front\unq-desarrollo-app-cripto-front\src\components" />
       <recent name="C:\Users\Nelson\Documents\programacion\front\unq-desarrollo-app-cripto-front" />
     </key>
   </component>
