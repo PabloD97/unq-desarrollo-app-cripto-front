@@ -6,6 +6,7 @@ import cotizacion from '../img/cotizacion.jpg';
 import generarActividad from '../img/generarActividad.jpg';
 import consumirActividad from '../img/consumirActividad.jpg';
 import {CardGroup,Button} from 'react-bootstrap';
+import  Navbar  from "./NavBar";
 
 const Home = () => {
 
@@ -13,6 +14,7 @@ const Home = () => {
 
     return (
         <>
+        <Navbar/>
         <h1>Home </h1>
         <CardGroup>
             <CardHome title="Cotizacion"

@@ -5,5 +5,10 @@ export const TRANSLATIONS_ES = {
   EmailAddress: "Dirección de correo electrónico",
   CheckMeOut: "Echa un vistazo",
   warning: "Nunca compartiremos su correo electrónico con nadie más.",
-  changeLanguage: "Cambiar lenguaje"
+  changeLanguage: "Cambiar lenguaje",
+  home: "Inicio",
+  activities: "Actividades",
+  usersList: "Lista de usuarios",
+  logOut: "Cerrar sesion",
+  cryptoassets: "Cripto activos"
 };

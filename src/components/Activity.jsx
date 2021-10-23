@@ -2,6 +2,7 @@ import React, {  useState, useEffect } from "react";
 import NumberFormat from "react-number-format";
 import { getQuotes } from "../api/cryptoactive.api"
 import {Form,Button,Modal} from 'react-bootstrap';
+import  Navbar  from "./NavBar";
 
 const Activity = () => {
 const [show, setShow] = useState(false);
@@ -12,6 +13,7 @@ const [show, setShow] = useState(false);
 
     return (
         <>
+        <Navbar/>
         <h2>Compra/Venta</h2>
         <div>
         <table className="table">

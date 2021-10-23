@@ -1,4 +1,5 @@
 import React, {  useState, useEffect } from "react";
+import  Navbar  from "./NavBar";
 import NumberFormat from "react-number-format";
 import { getQuotes } from "../api/cryptoactive.api"
 
@@ -22,6 +23,7 @@ const Cryptoassets = () => {
 
     return (
         <>
+        <Navbar/>
         <h2>Listado de crypto activos</h2>
         <div>
         <table className="table">

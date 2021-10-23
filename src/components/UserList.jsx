@@ -1,5 +1,6 @@
 import React, {  useState, useEffect } from "react";
-import { getUsers } from "../api/users.api"
+import { getUsers } from "../api/users.api";
+import  Navbar  from "./NavBar";
 
 const UserList = () => {
 
@@ -21,6 +22,7 @@ const UserList = () => {
 
     return (
         <>
+        <Navbar/>
         <h2>Listado de usarios</h2>
         <div>
         <table className="table">
