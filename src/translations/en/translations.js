@@ -10,5 +10,12 @@ export const TRANSLATIONS_EN = {
   activities: "Activities",
   usersList: "User List",
   logOut: "Log out",
-  cryptoassets: "Crypto Assets"
+  cryptoassets: "Crypto Assets",
+  name: "Name",
+  lastname: "Lastname",
+  email: "Email",
+  address: "Address",
+  wallet: "Wallet",
+  back: "Back",
+  enterYour: "Enter your "
 };

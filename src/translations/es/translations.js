@@ -10,5 +10,12 @@ export const TRANSLATIONS_ES = {
   activities: "Actividades",
   usersList: "Lista de usuarios",
   logOut: "Cerrar sesion",
-  cryptoassets: "Cripto activos"
+  cryptoassets: "Cripto activos",
+  name: "Nombre",
+  lastname: "Apellido",
+  email: "Correo electronico",
+  address: "Direccion",
+  wallet: "Billetera",
+  back: "Atras",
+  enterYour: "Ingrese su "
 };

@@ -5,22 +5,17 @@ import { postLogin } from "../api/cryptoactive.api";
 import Register from "./Register";
 import { useTranslation } from "react-i18next";
 import i18n from "./../translations/i18n";
+import NavBarBeginning from "./NavBarBeginning";
 
 const Login = () => {
   const { t } = useTranslation();
 
-  const [language, setLanguage] = useState("en");
 
   const [datos, setDatos] = useState({
     username: "",
     password: "",
   });
 
-  const handleOnclick = (e) => {
-    e.preventDefault();
-    setLanguage(e.target.value);
-    i18n.changeLanguage(e.target.value);
-  };
 
   const handleInputChange = (event) => {
     setDatos({
@@ -44,13 +39,14 @@ const Login = () => {
 
   return (
     <>
+    <NavBarBeginning/>
       <Form onSubmit={login}>
         <Form.Group
           className="mb-3"
           controlId="formBasicEmail"
           onChange={handleInputChange}
         >
-          <Form.Label>{t("register")}</Form.Label>
+          <Form.Label>{t("email")}</Form.Label>
           <Form.Control
             type="email"
             placeholder="Enter email"
@@ -81,18 +77,6 @@ const Login = () => {
           <Button variant="secondary">{t("register")}</Button>
         </Link>
       </Form>
-
-      <div>
-        {t("changeLanguage")}
-        <div>
-          <Button variant="success" value="es" onClick={handleOnclick}>
-            es
-          </Button>
-          <Button variant="warning" value="en" onClick={handleOnclick}>
-            en
-          </Button>
-        </div>
-      </div>
     </>
   );
 };
