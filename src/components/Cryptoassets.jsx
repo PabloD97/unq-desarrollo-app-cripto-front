@@ -1,58 +1,69 @@
-import React, {  useState, useEffect } from "react";
-import  Navbar  from "./NavBar";
-import NumberFormat from "react-number-format";
-import { getQuotes } from "../api/cryptoactive.api"
+import React, { useState, useEffect } from "react";
+import Navbar from "./NavBar";
+import { getQuotes } from "../api/cryptoactive.api";
+import { useTranslation } from "react-i18next";
 
 const Cryptoassets = () => {
 
+  const { t } = useTranslation();
 
-    const [cryptoassets, setCryptoassets] = useState([]);
+  const [cryptoassets, setCryptoassets] = useState([]);
 
-    
   useEffect(() => {
     getCryptoassets();
   }, []);
 
   const getCryptoassets = () => {
-    getQuotes().then((result) => {
-
+    getQuotes()
+      .then((result) => {
         setCryptoassets(result.data);
       })
       .catch(console.log);
   };
 
-    return (
-        <>
-        <Navbar/>
-        <h2>Listado de crypto activos</h2>
-        <div>
+  const formatCurrency = (number, locale) => {
+    let currencyLocale = "";
+
+    if (locale === "es-AR") {
+      currencyLocale = "ARS";
+    } else {
+      currencyLocale = "USD";
+    }
+    return new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency: currencyLocale,
+    }).format(number);
+  };
+
+  return (
+    <>
+      <Navbar />
+      <h2>{t("listOfCryptoAssets")}</h2>
+      <div>
         <table className="table">
           <thead>
             <tr>
-              <th>Symbol</th>
-              <th>Price USD</th>
-              <th>Price AR</th>
-              <th>Quote Time</th>
-
+              <th>{t("crypto")}</th>
+              <th>{t("price") + "USD"}</th>
+              <th>{t("price") + "AR"}</th>
+              <th>{t("updated")}</th>
             </tr>
           </thead>
           <tbody>
-            {cryptoassets.map(crypto => {
+            {cryptoassets.map((crypto) => {
               return (
                 <tr key={crypto.id}>
                   <td>{crypto.symbol}</td>
-                  <td>{<NumberFormat 
-                        value={crypto.price}
-                        displayType="text"
-                        thousandSeparator={true}
-                        prefix="$"
-                        />}</td>
-                  <td>{<NumberFormat 
-                        value={crypto.priceAr}
-                        displayType="text"
-                        thousandSeparator={true}
-                        prefix="$"
-                        />}</td>
+                  <td>
+                    {
+                      formatCurrency(crypto.price, "en-US" )
+                    }
+                  </td>
+                  <td>
+                    {
+                      formatCurrency(crypto.priceAr, "es-AR" )
+                    }
+                  </td>
                   <td>{crypto.quoteTime}</td>
                 </tr>
               );
@@ -60,9 +71,8 @@ const Cryptoassets = () => {
           </tbody>
         </table>
       </div>
-
-      </>
-    )
-}
+    </>
+  );
+};
 
 export default Cryptoassets;

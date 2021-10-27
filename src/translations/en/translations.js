@@ -17,5 +17,20 @@ export const TRANSLATIONS_EN = {
   address: "Address",
   wallet: "Wallet",
   back: "Back",
-  enterYour: "Enter your "
+  enterYour: "Enter your ",
+  listOfCryptoAssets: "List of crypto assets",
+  price: "Price ",
+  updated: "Updated",
+  crypto: "Crypto",
+  buyAndSell: "Buy and Sell",
+  hour: "Hour",
+  amount: "Amount",
+  quotation: "Quotation",
+  reputation: "Reputation",
+  numberOfOperations: "Number of operations",
+  operation: "Operation",
+  action: "Action",
+  amountIn: "Amount in $"
+
+
 };

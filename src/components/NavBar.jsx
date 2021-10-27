@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "./../translations/i18n";
 
 const NavBar = () => {
+  //TODO: Arreglar que al cambiar d epantalla no se vuelva al idioma "en"
   const [language, setLanguage] = useState("en");
 
   const { t } = useTranslation();

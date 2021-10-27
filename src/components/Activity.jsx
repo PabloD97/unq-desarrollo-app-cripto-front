@@ -3,8 +3,12 @@ import NumberFormat from "react-number-format";
 import { getQuotes } from "../api/cryptoactive.api"
 import {Form,Button,Modal} from 'react-bootstrap';
 import  Navbar  from "./NavBar";
+import { useTranslation } from "react-i18next";
 
 const Activity = () => {
+
+  const { t } = useTranslation();
+
 const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -14,22 +18,22 @@ const [show, setShow] = useState(false);
     return (
         <>
         <Navbar/>
-        <h2>Compra/Venta</h2>
+        <h2>{t("buyAndSell")}</h2>
         <div>
         <table className="table">
           <thead>
             <tr>
-              <th>Numero de operacion</th>
-              <th>Hora</th>
-              <th>Criptoactivo</th>
-              <th>Cantidad</th>
-              <th>Cotizacion </th>
-              <th>Monto en $ </th>
-              <th>Nombre y apellido </th>
-              <th>Cantidad de operaciones</th>
-              <th>Reputacion</th>
-              <th>Operacion</th>
-              <th>Acción</th>
+              <th>{t("numberOfOperations")}</th>
+              <th>{t("hour")}</th>
+              <th>{t("cryptoassets")}</th>
+              <th>{t("amount")}</th>
+              <th>{t("quotation")} </th>
+              <th>{t("amountIn")}</th>
+              <th>{t("name") + " y " + t("lastname")}</th>
+              <th>{t("numberOfOperations")}</th>
+              <th>{t("reputation")}</th>
+              <th>{t("operation")}</th>
+              <th>{t("action")}</th>
 
 
             </tr>
