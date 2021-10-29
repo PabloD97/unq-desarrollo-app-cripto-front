@@ -18,8 +18,7 @@ const Register = () => {
     wallet: "",
   });
   const handleInputChange = (event) => {
-    console.log(event.target.name);
-    console.log(event.target.value);
+
     setDatos({
       ...datos,
       [event.target.name]: event.target.value,
