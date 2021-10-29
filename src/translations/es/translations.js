@@ -30,6 +30,11 @@ export const TRANSLATIONS_ES = {
   numberOfOperations: "Cantidad de operaciones",
   operation: "Operacion",
   action: "Accion",
-  amountIn: "Monto en $"
+  amountIn: "Monto en $",
+  purchase: "Comprar",
+  sell: "Vender",
+  activity: "Actividad",
+  cancel: "Cancelar",
+  confirm: "Confirmar"
 
 };
