@@ -18,21 +18,13 @@ export const getTransaction = () => {
 
 
 }
-
-export const getTransactionUser = (user) => {
-
-
-    return  axios.get(`http://${host}/usertransaction`,{ data:{id:1}, headers:{'Authorization': 'Bearer ' + localStorage.getItem("token")}})
-        .then((response) => {
-            return response
-        })
-        .catch((error) => {
-            alert("no ok")
-
-        })
-
-
+export const getTransactionUser=(user)=>{
+    console.log(user)
+    return axios.get(`http://${host}/usertransaction`,{
+                                                        params: user
+                                                      })
 }
+
 
 
 export default {

@@ -17,8 +17,11 @@ const Transaction = () => {
     }, []);
 
     const getTransactions = () => {
-        getTransactionUser({"id":1})
+
+        getTransactionUser({email:"nel@gmail.com"})
             .then((result) => {
+                console.log(result)
+
                 setTransaction(result.data);
             })
             .catch(console.log);

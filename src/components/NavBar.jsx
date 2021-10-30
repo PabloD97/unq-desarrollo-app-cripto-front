@@ -30,6 +30,8 @@ const NavBar = () => {
               <Nav.Link href="/activities">{t("activities")}</Nav.Link>
               <Nav.Link href="/userslist">{t("usersList")}</Nav.Link>
               <Nav.Link href="/cryptoassets">{t("cryptoassets")}</Nav.Link>
+              <Nav.Link href="/transaction">My transaction</Nav.Link>
+
             </Nav>
             <Nav>
               
