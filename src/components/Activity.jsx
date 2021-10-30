@@ -12,9 +12,10 @@ const Activity = () => {
   const { t } = useTranslation();
 
   const [show, setShow] = useState(false);
-
+  const[activitySelected,setActivitySelected]=useState({})
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = (activity) => {setShow(true)
+                            setActivitySelected(activity)};
   const [activity, setActivity] = useState([]);
 
   const getActivities = () => {
@@ -96,7 +97,7 @@ const Activity = () => {
                     {" "}
                     <Button
                       variant="outline-primary"
-                      onClick={() => handleShow(crypto.symbol, "purchase")}
+                      onClick={() => handleShow(act)}
                     >
                       {t(act.action)}
                     </Button>
@@ -111,34 +112,28 @@ const Activity = () => {
               <Modal.Body>
                 <table className="table">
                   <tbody>
-                    <tr key={crypto.id}>
-                      <td>Hour</td>
-                      <td>10:00</td>
-                    </tr>
-                    <tr key={crypto.id}>
+
+                    <tr >
                       <td>cryptoactive</td>
-                      <td>10:00</td>
+                      <td>{activitySelected.cryptoactive}</td>
                     </tr>
-                    <tr key={crypto.id}>
+                    <tr >
                       <td>Monto</td>
-                      <td>10:00</td>
+                      <td>{priceInARS(activitySelected.cryptoactive , activitySelected.cantidad)}</td>
                     </tr>
-                    <tr key={crypto.id}>
+                    <tr >
                       <td>Usuario</td>
-                      <td>10:00</td>
+                      <td>{activitySelected.fullNameUser}</td>
                     </tr>
                     <tr key={crypto.id}>
                       <td>Cantidad</td>
-                      <td>10:00</td>
+                      <td>{activitySelected.cantidad}</td>
                     </tr>
                     <tr key={crypto.id}>
                       <td>Reputacion</td>
-                      <td>10:00</td>
+                      <td>{activitySelected.reputation}</td>
                     </tr>
-                    <tr key={crypto.id}>
-                      <td>Envio</td>
-                      <td>10:00</td>
-                    </tr>
+
                   </tbody>
                 </table>
               </Modal.Body>

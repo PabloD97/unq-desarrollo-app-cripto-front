@@ -18,6 +18,7 @@ const Transaction = () => {
 
     const getTransactions = () => {
 
+
         getTransactionUser({email:"nel@gmail.com"})
             .then((result) => {
                 console.log(result)
