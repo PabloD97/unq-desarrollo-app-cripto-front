@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./NavBar";
 import { getQuotes } from "../api/cryptoactive.api";
 import { useTranslation } from "react-i18next";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal,Form } from "react-bootstrap";
 
 const Cryptoassets = () => {
   const [show, setShow] = useState({open:false});
 
-  const handleClose = () => setShow({open:false,id:""});
-  const handleShow = (id) => setShow({open:true,id:id});
+  const handleClose = () => setShow({open:false,id:"",action:""});
+  const handleShow = (id,action) => setShow({open:true,id:id,action:action});
 
   const { t } = useTranslation();
 
@@ -66,13 +66,13 @@ const Cryptoassets = () => {
                   <td>{crypto.quoteTime}</td>
                   <td>
                     {" "}
-                    <Button variant="outline-primary" onClick={() => handleShow(crypto.symbol)}>
+                    <Button variant="outline-primary" onClick={() => handleShow(crypto.symbol,"purchase")}>
                       {t("purchase")}
                     </Button>
                   </td>
                   <td>
                     {" "}
-                    <Button variant="outline-warning">{t("sell")}</Button>
+                    <Button variant="outline-warning" onClick={() => handleShow(crypto.symbol,"sale")}>{t("sell")}</Button>
                   </td>
                 </tr>
               );
@@ -89,7 +89,24 @@ const Cryptoassets = () => {
         <Modal.Header closeButton>
           <Modal.Title>{t("activity")}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{show.id}</Modal.Body>
+        <Modal.Body>
+        <Form>
+          <Form.Group className="mb-3" >
+            <Form.Label htmlFor="disabledTextInput">Name Crypoactive</Form.Label>
+            <Form.Control  id="disabledTextInput" value={show.id} placeholder="pepe" disabled/>
+          </Form.Group>
+          <Form.Group className="mb-3" >
+                      <Form.Label htmlFor="disabledTextInput">Action</Form.Label>
+                      <Form.Control  id="disabledTextInput" value={show.action}  disabled/>
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Amount</Form.Label>
+            <Form.Control  placeholder="amount" />
+          </Form.Group>
+        </Form>
+
+
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             {t("cancel")}
