@@ -4,42 +4,52 @@ import { getQuotes } from "../api/cryptoactive.api";
 import { addActivity } from "../api/activity.api";
 
 import { useTranslation } from "react-i18next";
-import { Button, Modal,Form } from "react-bootstrap";
+import { Button, Modal, Form } from "react-bootstrap";
 
 const Cryptoassets = () => {
   const [cryptoassets, setCryptoassets] = useState([]);
-  const [activity,setActivity]=useState({emailUser:localStorage.getItem("email")})
-  const [show, setShow] = useState({open:false});
-  const handleClose = () => setShow({open:false});
-  const handleShow = (id,action) => {setShow({open:true,cryptoactive:id,action:action})
-                                       setActivity({...activity,action: action,cryptoactive:id
-                                                          })};
+  const [activity, setActivity] = useState({
+    emailUser: localStorage.getItem("email"),
+  });
+  const [show, setShow] = useState({ open: false });
+  const handleClose = () => setShow({ open: false });
+  const handleShow = (id, action) => {
+    setShow({ open: true, cryptoactive: id, action: action });
+    setActivity({ ...activity, action: action, cryptoactive: id });
+  };
 
   const { t } = useTranslation();
 
+  useEffect(() => {
+    getCryptoassets();
+  }, []);
 
-
-  useEffect(() => { getCryptoassets(); }, []);
-
-  const getCryptoassets = () => { getQuotes().then((result) => {  setCryptoassets(result.data);})
+  const getCryptoassets = () => {
+    getQuotes()
+      .then((result) => {
+        setCryptoassets(result.data);
+      })
       .catch(console.log);
   };
 
-  const newActivity = () =>       addActivity(activity)
-
+  const newActivity = () => {
+    addActivity(activity);
+    handleClose();
+  };
 
   const formatCurrency = (number, locale) => {
     let currencyLocale = "";
-    if (locale === "es-AR")   currencyLocale = "ARS";
+    if (locale === "es-AR") currencyLocale = "ARS";
     else currencyLocale = "USD";
-    return new Intl.NumberFormat(locale, {style: "currency",currency: currencyLocale,}).format(number);
+    return new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency: currencyLocale,
+    }).format(number);
   };
 
-
-  const handleInputChange = (event) => {setActivity({...activity,
-                                                    [event.target.name]: event.target.value, })
-
-}
+  const handleInputChange = (event) => {
+    setActivity({ ...activity, [event.target.name]: event.target.value });
+  };
   return (
     <>
       <Navbar />
@@ -66,13 +76,20 @@ const Cryptoassets = () => {
                   <td>{crypto.quoteTime}</td>
                   <td>
                     {" "}
-                    <Button variant="outline-primary" onClick={() => handleShow(crypto.symbol,"purchase")}>
+                    <Button
+                      variant="outline-primary"
+                      onClick={() => handleShow(crypto.symbol, "purchase")}
+                    >
                       {t("purchase")}
                     </Button>
                   </td>
                   <td>
-                    {" "}
-                    <Button variant="outline-warning" onClick={() => handleShow(crypto.symbol,"sale")}>{t("sell")}</Button>
+                    <Button
+                      variant="outline-warning"
+                      onClick={() => handleShow(crypto.symbol, "sale")}
+                    >
+                      {t("sell")}
+                    </Button>
                   </td>
                 </tr>
               );
@@ -90,30 +107,39 @@ const Cryptoassets = () => {
           <Modal.Title>{t("activity")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Form>
-          <Form.Group className="mb-3"  onSubmit={handleInputChange}>
-            <Form.Label htmlFor="disabledTextInput">Name Crypoactive</Form.Label>
-            <Form.Control  id="disabledTextInput" value={show.cryptoactive} name="cryptoactive"  disabled/>
-          </Form.Group>
-          <Form.Group className="mb-3"  >
-                      <Form.Label htmlFor="disabledTextInput">Action</Form.Label>
-                      <Form.Control  id="disabledTextInput" value={show.action} name="action"  disabled/>
-          </Form.Group>
-          <Form.Group className="mb-3" onChange={handleInputChange}>
-            <Form.Label>Amount</Form.Label>
-            <Form.Control  placeholder="amount" name="cantidad" />
-          </Form.Group>
-         <Button variant="secondary" onClick={handleClose}>
-                     {t("cancel")}
-                   </Button>
-         <Button variant="primary" onClick={newActivity}>
-                     {t("confirm")}
-                   </Button>
-        </Form>
-
-
+          <Form>
+            <Form.Group className="mb-3" onSubmit={handleInputChange}>
+              <Form.Label htmlFor="disabledTextInput">
+                Name Crypoactive
+              </Form.Label>
+              <Form.Control
+                id="disabledTextInput"
+                value={show.cryptoactive}
+                name="cryptoactive"
+                disabled
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="disabledTextInput">Action</Form.Label>
+              <Form.Control
+                id="disabledTextInput"
+                value={show.action}
+                name="action"
+                disabled
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" onChange={handleInputChange}>
+              <Form.Label>Amount</Form.Label>
+              <Form.Control placeholder="amount" name="cantidad" />
+            </Form.Group>
+            <Button variant="secondary" onClick={handleClose}>
+              {t("cancel")}
+            </Button>
+            <Button variant="primary" onClick={newActivity}>
+              {t("confirm")}
+            </Button>
+          </Form>
         </Modal.Body>
-
       </Modal>
     </>
   );
