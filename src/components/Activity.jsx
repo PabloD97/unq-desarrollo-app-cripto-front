@@ -74,38 +74,22 @@ const [show, setShow] = useState(false);
                                   <td>{act.cantidad}</td>
                                   <td>todo:mostrar cotizacion</td>
                                   <td>todo:mostrar en pesos</td>
+                                  <td>{act.fullNameUser}</td>
+                                  <td>{act.numberOperations}</td>
+
+                                  <td>{act.reputation}</td>
 
                                   <td>{act.action}</td>
                                   <td>
                                     {" "}
                                     <Button variant="outline-primary" onClick={() => handleShow(crypto.symbol,"purchase")}>
-                                      {t("purchase")}
+                                      {t(act.action)}
                                     </Button>
                                   </td>
-                                  <td>
-                                    {" "}
-                                    <Button variant="outline-warning" onClick={() => handleShow(crypto.symbol,"sale")}>{t("sell")}</Button>
-                                  </td>
+
                                 </tr>
                               );
                             })}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <tr>
-                  <td><Button variant="primary" onClick={handleShow}> Accion</Button></td>
-                </tr>
                      <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
                           <Modal.Title>Transaccion</Modal.Title>
