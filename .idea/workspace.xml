@@ -20,10 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d1a010c-b222-41b2-8bab-b7027c30b1c0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/api/activity.api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/activity.api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/activity.api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Activity.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Activity.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Cryptoassets.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cryptoassets.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +78,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="339" y="157" key="run.anything.popup" timestamp="1635605119342">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="157" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1635605119342" />
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1635595953225">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

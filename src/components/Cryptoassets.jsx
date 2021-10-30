@@ -7,8 +7,8 @@ import { useTranslation } from "react-i18next";
 import { Button, Modal,Form } from "react-bootstrap";
 
 const Cryptoassets = () => {
-   const [cryptoassets, setCryptoassets] = useState([]);
-   const [activity,setActivity]=useState({emailUser:localStorage.getItem("email")})
+  const [cryptoassets, setCryptoassets] = useState([]);
+  const [activity,setActivity]=useState({emailUser:localStorage.getItem("email")})
   const [show, setShow] = useState({open:false});
   const handleClose = () => setShow({open:false});
   const handleShow = (id,action) => {setShow({open:true,cryptoactive:id,action:action})
@@ -19,51 +19,27 @@ const Cryptoassets = () => {
 
 
 
-  useEffect(() => {
-    getCryptoassets();
-  }, []);
+  useEffect(() => { getCryptoassets(); }, []);
 
-  const getCryptoassets = () => {
-    getQuotes()
-      .then((result) => {
-        setCryptoassets(result.data);
-      })
+  const getCryptoassets = () => { getQuotes().then((result) => {  setCryptoassets(result.data);})
       .catch(console.log);
   };
 
-   const newActivity = () => {
+  const newActivity = () =>       addActivity(activity)
 
-      console.log(activity)
-      addActivity(activity)
-
-    };
 
   const formatCurrency = (number, locale) => {
     let currencyLocale = "";
-
-    if (locale === "es-AR") {
-      currencyLocale = "ARS";
-    } else {
-      currencyLocale = "USD";
-    }
-    return new Intl.NumberFormat(locale, {
-      style: "currency",
-      currency: currencyLocale,
-    }).format(number);
+    if (locale === "es-AR")   currencyLocale = "ARS";
+    else currencyLocale = "USD";
+    return new Intl.NumberFormat(locale, {style: "currency",currency: currencyLocale,}).format(number);
   };
 
 
-  const handleInputChange = (event) => {
-    setActivity({
-      ...activity,
-      [event.target.name]: event.target.value,
-    })
-          console.log(localStorage)
-;
+  const handleInputChange = (event) => {setActivity({...activity,
+                                                    [event.target.name]: event.target.value, })
+
 }
-
-
-
   return (
     <>
       <Navbar />

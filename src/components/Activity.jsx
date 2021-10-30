@@ -1,11 +1,12 @@
 import React, {  useState, useEffect } from "react";
 import NumberFormat from "react-number-format";
-import { getQuotes } from "../api/cryptoactive.api"
+import { getAllActivity } from "../api/activity.api"
 import {Form,Button,Modal} from 'react-bootstrap';
 import  Navbar  from "./NavBar";
 import { useTranslation } from "react-i18next";
 
 const Activity = () => {
+
 
   const { t } = useTranslation();
 
@@ -13,8 +14,15 @@ const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [activity,setActivity]=useState([])
 
+  const getActivities = () => { getAllActivity().then((result) => {  console.log(result)
 
+  setActivity(result.data);})
+      .catch(console.log);
+  };
+ useEffect(() => { getActivities()
+                     console.log(activity); }, []);
     return (
         <>
         <Navbar/>
@@ -40,18 +48,62 @@ const [show, setShow] = useState(false);
           </thead>
           <tbody>
 
-                <tr key={crypto.id}>
-                  <td>un campo</td>
-                  <td>un campo</td>
-                  <td>un campo</td>
-                  <td>un campo</td>
-                  <td>un campo</td>
-                  <td>un campo</td>
-                  <td>un campo</td>
-                  <td>un campo</td>
-                  <td>un campo</td>
-                  <td>un campo</td>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                {activity.map((act) => {
+                              return (
+                                <tr key={act.id}>
+                                  <td>{act.id}</td>
+                                  <td>{act.hour}</td>
+                                  <td>{act.cryptoactive}</td>
+                                  <td>{act.cantidad}</td>
+                                  <td>todo:mostrar cotizacion</td>
+                                  <td>todo:mostrar en pesos</td>
+
+                                  <td>{act.action}</td>
+                                  <td>
+                                    {" "}
+                                    <Button variant="outline-primary" onClick={() => handleShow(crypto.symbol,"purchase")}>
+                                      {t("purchase")}
+                                    </Button>
+                                  </td>
+                                  <td>
+                                    {" "}
+                                    <Button variant="outline-warning" onClick={() => handleShow(crypto.symbol,"sale")}>{t("sell")}</Button>
+                                  </td>
+                                </tr>
+                              );
+                            })}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <tr>
                   <td><Button variant="primary" onClick={handleShow}> Accion</Button></td>
                 </tr>
                      <Modal show={show} onHide={handleClose}>

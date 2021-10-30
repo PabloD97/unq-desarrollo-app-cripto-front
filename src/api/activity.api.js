@@ -10,10 +10,10 @@ export const addActivity=(activity)=>{
     return axios.post(`http://${host}/addactivity`,activity)
 }
 
-export const getAllActivity = (idUser) => {
+export const getAllActivity = () => {
 
 
-    return  axios.get(`http://${host}/api/users`,{ data:{id:idUser}, headers:{'Authorization': 'Bearer ' + localStorage.getItem("token")}})
+    return  axios.get(`http://${host}/activities`,{ headers:{'Authorization': 'Bearer ' + localStorage.getItem("token")}})
         .then((response) => {
             return response
         })
