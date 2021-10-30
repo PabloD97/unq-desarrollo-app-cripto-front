@@ -5,10 +5,10 @@ import { useTranslation } from "react-i18next";
 import { Button, Modal } from "react-bootstrap";
 
 const Cryptoassets = () => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState({open:false});
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setShow({open:false,id:""});
+  const handleShow = (id) => setShow({open:true,id:id});
 
   const { t } = useTranslation();
 
@@ -66,7 +66,7 @@ const Cryptoassets = () => {
                   <td>{crypto.quoteTime}</td>
                   <td>
                     {" "}
-                    <Button variant="outline-primary" onClick={handleShow}>
+                    <Button variant="outline-primary" onClick={() => handleShow(crypto.symbol)}>
                       {t("purchase")}
                     </Button>
                   </td>
@@ -81,7 +81,7 @@ const Cryptoassets = () => {
         </table>
       </div>
       <Modal
-        show={show}
+        show={show.open}
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
@@ -89,7 +89,7 @@ const Cryptoassets = () => {
         <Modal.Header closeButton>
           <Modal.Title>{t("activity")}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>{show.id}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             {t("cancel")}
