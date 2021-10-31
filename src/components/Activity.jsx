@@ -47,14 +47,23 @@ const Activity = () => {
   };
 
   const cryptoactivePrice = (symbol) => {
-    const priceUSD = cryptoassets.find(crypto => crypto.symbol === symbol).price;
-    return formatCurrency(priceUSD, "en-US");
+    if(symbol == undefined){
+      return 0
+    } else {
+      const priceUSD = cryptoassets.find(crypto => crypto.symbol === symbol).price;
+      return formatCurrency(priceUSD, "en-US");
+    }
+    
   }
 
   const priceInARS = (symbol, amount) => {
+    if(symbol == undefined){
+      return 0;
+    } else {
     const crypto = cryptoassets.find(crypto => crypto.symbol === symbol);
     const priceARS = crypto.priceAr;
     return formatCurrency((priceARS * amount), "es-AR"); 
+    }
   }
   return (
     <>
@@ -79,6 +88,7 @@ const Activity = () => {
           </thead>
           <tbody>
             {activity.map((act) => {
+              console.log(act)
               return (
                 <tr key={act.id}>
                   <td>{act.id}</td>
