@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import NumberFormat from "react-number-format";
 import { getAllActivity } from "../api/activity.api";
 import { getQuotes } from "../api/cryptoactive.api";
-import {confirmTransaction} from "../api/transaction";
+import {activityToTransaction} from "../api/transaction";
 import { Form, Button, Modal } from "react-bootstrap";
 import Navbar from "./NavBar";
 import { useTranslation } from "react-i18next";
@@ -39,8 +39,8 @@ const Activity = () => {
       .catch(console.log);
   };
 
-const confirm=(activityId)=>{
-      confirmTransaction(activityId,localStorage.getItem("email"))
+const effectTransaction=(activityId)=>{
+      activityToTransaction(activityId,localStorage.getItem("email"))
 }
   const formatCurrency = (number, locale) => {
     let currencyLocale = "";
@@ -154,7 +154,7 @@ const confirm=(activityId)=>{
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Button variant="primary" onClick={()=>confirm(activitySelected.id)}>
+                <Button variant="primary" onClick={()=>effectTransaction(activitySelected.id)}>
                   Effect transfer
                 </Button>
               </Modal.Footer>

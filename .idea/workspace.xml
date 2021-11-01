@@ -69,6 +69,7 @@
       <option name="presentableId" value="Default" />
       <updated>1633955515592</updated>
       <workItem from="1635625767054" duration="2460000" />
+      <workItem from="1635800979750" duration="4018000" />
     </task>
     <servers />
   </component>
@@ -96,5 +97,16 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1635595953225" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/transaction.jsx</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

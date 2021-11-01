@@ -4,7 +4,7 @@ import { getQuotes } from "../api/cryptoactive.api";
 import { Form, Button, Modal } from "react-bootstrap";
 import Navbar from "./NavBar";
 import { useTranslation } from "react-i18next";
-import { getTransaction, getTransactionUser } from "../api/transaction";
+import { confirmTransaction, getTransactionUser } from "../api/transaction";
 import { getUser } from "../api/users.api";
 
 const Transaction = () => {
@@ -22,7 +22,13 @@ const Transaction = () => {
       })
       .catch(console.log);
   };
-
+  const transactionOk = (id) => {
+    confirmTransaction(id)
+        .then((result) => {
+          setTransaction(result.data);
+        })
+        .catch(console.log);
+  };
   return (
     <>
       <Navbar />
@@ -55,6 +61,13 @@ const Transaction = () => {
                   <td>{transaction.usuarioVendedor}</td>
 
                   <td>{transaction.finalished.toString()}</td>
+
+                  <td><Button variant="secondary" onClick={()=>transactionOk(transaction.id)} >
+                    confirm
+                  </Button></td>
+                  <td><Button variant="secondary" >
+                    cancell
+                  </Button></td>
                 </tr>
               );
             })}

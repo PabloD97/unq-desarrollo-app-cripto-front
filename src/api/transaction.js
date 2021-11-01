@@ -24,7 +24,7 @@ export const getTransactionUser=(user)=>{
                                                         params: user
                                                       })
 }
-export const confirmTransaction=(id,email)=>{
+export const activityToTransaction=(id, email)=>{
     return axios.post(`http://${host}/activitytotransaction`,
          null,{params:{
         emailUser: email,
@@ -32,6 +32,13 @@ export const confirmTransaction=(id,email)=>{
     }       })
 }
 
+export const confirmTransaction=(id)=>{
+    return axios.post(`http://${host}/confirmtransaction`,
+        null,{params:{
+
+                idTransaction:id
+            }       })
+}
 
 
 export default {
