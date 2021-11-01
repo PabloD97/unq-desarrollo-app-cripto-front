@@ -6,8 +6,11 @@ import Register from "./Register";
 import { useTranslation } from "react-i18next";
 import i18n from "./../translations/i18n";
 import NavBarBeginning from "./NavBarBeginning";
+import registerAll from "../script/registerUsers";
 
 const Login = () => {
+
+  
   const { t } = useTranslation();
 
 
@@ -24,6 +27,9 @@ const Login = () => {
     });
   };
 
+  const registerAlls = () => {
+    registerAll();
+  }
   const history = useHistory();
 
   const login = (event) => {
@@ -78,6 +84,9 @@ const Login = () => {
           <Button variant="secondary">{t("register")}</Button>
         </Link>
       </Form>
+      <Button variant="danger" onClick={registerAlls}>
+        Execute script
+      </Button>
     </>
   );
 };

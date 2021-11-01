@@ -34,7 +34,7 @@ const Register = () => {
         setTimeout(() => {
           alert("registrado con exito");
           history.push("/login");
-        }, 5000);
+        }, 1000);
       })
       .catch(console.log);
   };
