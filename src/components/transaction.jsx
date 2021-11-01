@@ -25,7 +25,6 @@ const Transaction = () => {
   const transactionOk = (id) => {
     confirmTransaction(id)
         .then((result) => {
-          setTransaction(result.data);
         })
         .catch(console.log);
   };
