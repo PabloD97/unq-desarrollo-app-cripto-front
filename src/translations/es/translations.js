@@ -35,6 +35,15 @@ export const TRANSLATIONS_ES = {
   sell: "Vender",
   activity: "Actividad",
   cancel: "Cancelar",
-  confirm: "Confirmar"
+  confirm: "Confirmar",
+  transactions: "Transacciones",
+  buyerUser: "Usuario comprador",
+  sellerUser: "Usuario vendedor",
+  isFinalished: "Finalizado",
+  yes: "Si",
+  no: "No",
+  accept: "Acepto",
+  canceled: "Cancelo",
+  cryptoactive: "Cripto activo"
 
 };
