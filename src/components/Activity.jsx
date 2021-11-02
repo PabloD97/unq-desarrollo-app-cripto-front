@@ -70,6 +70,10 @@ const effectTransaction=(activityId)=>{
     return formatCurrency((priceARS * amount), "es-AR"); 
     }
   }
+
+  const countOperations = (numberOperations) => {
+    return (numberOperations > 0)? numberOperations : t("noOperations")
+  }
   return (
     <>
       <Navbar />
@@ -103,13 +107,12 @@ const effectTransaction=(activityId)=>{
                   <td>{cryptoactivePrice(act.cryptoactive)}</td>
                   <td>{priceInARS(act.cryptoactive , act.cantidad)}</td>
                   <td>{act.fullNameUser}</td>
-                  <td>{act.numberOperations}</td>
+                  <td>{countOperations(act.numberOperations)}</td>
 
                   <td>{act.reputation}</td>
 
                   <td>{act.action}</td>
                   <td>
-                    {" "}
                     <Button
                       variant="outline-primary"
                       onClick={() => handleShow(act)}
