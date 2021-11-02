@@ -6,10 +6,13 @@ import Navbar from "./NavBar";
 import { useTranslation } from "react-i18next";
 import { confirmTransaction, getTransactionUser } from "../api/transaction";
 import { getUser } from "../api/users.api";
+import { Link, useHistory } from "react-router-dom";
+
 
 const Transaction = () => {
   const { t } = useTranslation();
   const [transaction, setTransaction] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     getTransactions();
@@ -27,6 +30,8 @@ const Transaction = () => {
         .then((result) => {
         })
         .catch(console.log);
+    history.push("/transaction");
+    window.location.reload()
   };
   return (
     <>
@@ -61,12 +66,15 @@ const Transaction = () => {
 
                   <td>{transaction.finalished.toString()}</td>
 
-                  <td><Button variant="secondary" onClick={()=>transactionOk(transaction.id)} >
-                    confirm
-                  </Button></td>
-                  <td><Button variant="secondary" >
+                  <td >
+                    { transaction.finalished ? null: <Button variant="secondary" type="submit" onClick={()=>transactionOk(transaction.id)} >
+                      confirm
+                    </Button>  }
+                  </td>
+                  <td> { transaction.finalished ? null:<Button variant="secondary" type="submit" >
                     cancell
-                  </Button></td>
+                  </Button>}
+                  </td>
                 </tr>
               );
             })}

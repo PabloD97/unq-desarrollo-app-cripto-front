@@ -40,7 +40,9 @@ const Activity = () => {
   };
 
 const effectTransaction=(activityId)=>{
+      handleClose()
       activityToTransaction(activityId,localStorage.getItem("email"))
+      window.location.reload()
 }
   const formatCurrency = (number, locale) => {
     let currencyLocale = "";
@@ -154,7 +156,7 @@ const effectTransaction=(activityId)=>{
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Button variant="primary" onClick={()=>effectTransaction(activitySelected.id)}>
+                <Button variant="primary" type="submit" onClick={()=>effectTransaction(activitySelected.id)}>
                   Effect transfer
                 </Button>
               </Modal.Footer>
