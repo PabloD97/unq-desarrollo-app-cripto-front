@@ -4,10 +4,13 @@ import { getQuotes } from "../api/cryptoactive.api";
 import { Form, Button, Modal } from "react-bootstrap";
 import Navbar from "./NavBar";
 import { useTranslation } from "react-i18next";
-import { confirmTransaction, getTransactionUser } from "../api/transaction";
+import {
+  confirmTransaction,
+  getTransactionUser,
+  transactionCanceled,
+} from "../api/transaction";
 import { getUser } from "../api/users.api";
 import { Link, useHistory } from "react-router-dom";
-
 
 const Transaction = () => {
   const { t } = useTranslation();
@@ -33,6 +36,15 @@ const Transaction = () => {
     history.push("/transaction");
     window.location.reload()
   };
+
+  const cancelTransaction = (id) => {
+    transactionCanceled(id)
+        .then((result) => {
+        })
+        .catch(console.log);
+    history.push("/transaction");
+    window.location.reload()
+  };
   return (
     <>
       <Navbar />
@@ -47,6 +59,7 @@ const Transaction = () => {
               <th>{t("amount")}</th>
               <th>{t("buyerUser")}</th>
               <th>{t("sellerUser")}</th>
+              <th>{t("shippingAddress")}</th>
               <th>{t("isFinalished")}</th>
               <th>{t("accept")}</th>
               <th>{t("canceled")}</th>
@@ -54,6 +67,7 @@ const Transaction = () => {
           </thead>
           <tbody>
             {transaction.map((transaction) => {
+              console.log(transaction)
               return (
                 <tr key={transaction.id}>
                   <td>{transaction.id}</td>
@@ -63,17 +77,29 @@ const Transaction = () => {
                   <td>{transaction.cantidad}</td>
                   <td> {transaction.usuarioComprador}</td>
                   <td>{transaction.usuarioVendedor}</td>
-
+                  <td>{transaction.shippingAddress}</td>
                   <td>{transaction.finalished.toString()}</td>
-
-                  <td >
-                    { transaction.finalished ? null: <Button variant="secondary" type="submit" onClick={()=>transactionOk(transaction.id)} >
-                      confirm
-                    </Button>  }
+                  <td>
+                    {transaction.finalished ? null : (
+                      <Button
+                        variant="secondary"
+                        type="submit"
+                        onClick={() => transactionOk(transaction.id)}
+                      >
+                        confirm
+                      </Button>
+                    )}
                   </td>
-                  <td> { transaction.finalished ? null:<Button variant="secondary" type="submit" >
-                    cancell
-                  </Button>}
+                  <td>
+                    {transaction.finalished ? null : (
+                      <Button
+                        variant="secondary"
+                        type="submit"
+                        onClick={() => cancelTransaction(transaction.id)}
+                      >
+                        cancell
+                      </Button>
+                    )}
                   </td>
                 </tr>
               );
