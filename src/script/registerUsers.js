@@ -6,7 +6,7 @@ const user1 = {
   email: "pablo@gmail.com",
   direction: "554",
   password: "12345678",
-  cvu: "12345678",
+  cvu: "1234567891123456789121",
   wallet: "12345678",
 };
 
@@ -16,7 +16,7 @@ const user2 = {
   email: "nelson@gmail.com",
   direction: "558",
   password: "12345679",
-  cvu: "12345679",
+  cvu: "1234567891123456789122",
   wallet: "12345679",
 };
 
@@ -26,7 +26,7 @@ const user3 = {
   email: "jania@gmail.com",
   direction: "559",
   password: "12345677",
-  cvu: "12345677",
+  cvu: "1234567891123456789123",
   wallet: "12345677",
 };
 
@@ -36,7 +36,7 @@ const user4 = {
   email: "david@gmail.com",
   direction: "560",
   password: "12345676",
-  cvu: "12345676",
+  cvu: "1234567891123456789124",
   wallet: "12345676",
 };
 
