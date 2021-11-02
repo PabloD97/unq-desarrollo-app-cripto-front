@@ -44,9 +44,9 @@ export const TRANSLATIONS_EN = {
   no: "No",
   accept: "Accept",
   canceled: "Canceled",
-  cryptoactive: "Crypto active"
-
-
+  cryptoactive: "Crypto active",
+  noOperations: "No opetarions",
+  shippingAddress: "Shipping address"
 
 
 };
