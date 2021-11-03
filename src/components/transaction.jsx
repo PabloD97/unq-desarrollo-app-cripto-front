@@ -40,10 +40,10 @@ const Transaction = () => {
   const cancelTransaction = (id) => {
     transactionCanceled(id)
         .then((result) => {
+          console.log(result)
         })
         .catch(console.log);
-    history.push("/transaction");
-    window.location.reload()
+
   };
   return (
     <>
@@ -60,6 +60,7 @@ const Transaction = () => {
               <th>{t("buyerUser")}</th>
               <th>{t("sellerUser")}</th>
               <th>{t("shippingAddress")}</th>
+              <th>{t("reputation")}</th>
               <th>{t("isFinalished")}</th>
               <th>{t("accept")}</th>
               <th>{t("canceled")}</th>
@@ -78,6 +79,7 @@ const Transaction = () => {
                   <td> {transaction.usuarioComprador}</td>
                   <td>{transaction.usuarioVendedor}</td>
                   <td>{transaction.shippingAddress}</td>
+                  <td>{transaction.reputation}</td>
                   <td>{transaction.finalished.toString()}</td>
                   <td>
                     {transaction.finalished ? null : (
