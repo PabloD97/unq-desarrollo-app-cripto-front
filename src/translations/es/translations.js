@@ -42,10 +42,11 @@ export const TRANSLATIONS_ES = {
   isFinalished: "Finalizado",
   yes: "Si",
   no: "No",
-  accept: "Acepto",
-  canceled: "Cancelo",
+  accept: "Aceptar",
+  canceled: "Cancelar",
   cryptoactive: "Cripto activo",
   noOperations: "Sin operaciones",
-  shippingAddress: "Direccion de envio"
+  shippingAddress: "Direccion de envio",
+  myTransactions: "Mis transacciones"
 
 };

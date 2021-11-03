@@ -46,7 +46,7 @@ export const TRANSLATIONS_EN = {
   canceled: "Canceled",
   cryptoactive: "Crypto active",
   noOperations: "No opetarions",
-  shippingAddress: "Shipping address"
-
-
+  shippingAddress: "Shipping address",
+  myTransactions: "My transactions"
+  
 };
