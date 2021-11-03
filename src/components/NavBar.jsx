@@ -26,11 +26,10 @@ const NavBar = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/home">{t("home")}</Nav.Link>
               <Nav.Link href="/activities">{t("activities")}</Nav.Link>
               <Nav.Link href="/userslist">{t("usersList")}</Nav.Link>
               <Nav.Link href="/cryptoassets">{t("cryptoassets")}</Nav.Link>
-              <Nav.Link href="/transaction">My transaction</Nav.Link>
+              <Nav.Link href="/transaction">{t("myTransactions")}</Nav.Link>
 
             </Nav>
             <Nav>
