@@ -43,7 +43,8 @@ const Transaction = () => {
           console.log(result)
         })
         .catch(console.log);
-
+        history.push("/transaction");
+        window.location.reload()
   };
   return (
     <>
