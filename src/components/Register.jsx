@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Alert } from "react-bootstrap";
 import { postRegister } from "../api/cryptoactive.api";
 import { useTranslation } from "react-i18next";
 import NavBarBeginning from "./NavBarBeginning";
@@ -10,7 +10,10 @@ import * as yup from "yup";
 const Register = () => {
   const { t } = useTranslation();
 
-  const [values, setValues] = useState({})
+  const [values, setValues] = useState({});
+  const [message, setMessage] = useState("");
+  const [typeAlert, setTypeAlert] = useState("");
+  const [showMessageResponse, setShowMessageResponse] = useState(false);
 
 
   const history = useHistory();
@@ -39,16 +42,29 @@ const Register = () => {
       .length(8, `El valor debe ser de 8 caracteres`),
   });
 
+  const showMessage = (message, state, alert) => {
+    setTypeAlert(alert)
+    setMessage(message);
+    setShowMessageResponse(state);
+    
+    setTimeout(() => {
+      setShowMessageResponse(!state);
+    }, 2000);
+  }
+
   const register = () => {
     postRegister(values)
-      .then((result) => {
+      .then((response) => {
         setTimeout(() => {
-          alert("registrado con exito");
+          showMessage(response.data, true, "success")
           history.push("/login");
         }, 1000);
       })
-      .catch(console.log);
+      .catch((error) => {
+        showMessage(error.response.data, true, "danger")
+      });
   };
+
   return (
     <>
       <NavBarBeginning />
@@ -75,10 +91,8 @@ const Register = () => {
           isValid,
           errors,
         }) => (
-          <Form
-            noValidate
-            onSubmit={handleSubmit}
-          >
+          <Form noValidate onSubmit={handleSubmit}>
+            {(showMessageResponse)? <Alert variant={typeAlert}>{message}</Alert> : null}
             <Form.Group className="mb-3">
               <Form.Label>{t("name")}</Form.Label>
               <Form.Control
@@ -173,9 +187,14 @@ const Register = () => {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Button type="submit" onClick={()=> {
-              setValues(values);
-            }}>{t("register")}</Button>
+            <Button
+              type="submit"
+              onClick={() => {
+                setValues(values);
+              }}
+            >
+              {t("register")}
+            </Button>
 
             <Link to="/login">
               <Button variant="warning">{t("back")}</Button>
