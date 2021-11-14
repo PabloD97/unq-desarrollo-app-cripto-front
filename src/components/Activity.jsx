@@ -3,7 +3,7 @@ import NumberFormat from "react-number-format";
 import { getAllActivity } from "../api/activity.api";
 import { getQuotes } from "../api/cryptoactive.api";
 import {activityToTransaction} from "../api/transaction";
-import { Form, Button, Modal } from "react-bootstrap";
+import { Form, Button, Modal, Table } from "react-bootstrap";
 import Navbar from "./NavBar";
 import { useTranslation } from "react-i18next";
 
@@ -79,7 +79,7 @@ const effectTransaction=(activityId)=>{
       <Navbar />
       <h2>{t("buyAndSell")}</h2>
       <div>
-        <table className="table">
+        <Table className="table" responsive>
           <thead>
             <tr>
               <th>{t("numberOfOperations")}</th>
@@ -128,7 +128,7 @@ const effectTransaction=(activityId)=>{
                 <Modal.Title>Transaccion</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <table className="table">
+                <Table className="table" responsive>
                   <tbody>
 
                     <tr >
@@ -153,7 +153,7 @@ const effectTransaction=(activityId)=>{
                     </tr>
 
                   </tbody>
-                </table>
+                </Table>
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
@@ -165,7 +165,7 @@ const effectTransaction=(activityId)=>{
               </Modal.Footer>
             </Modal>
           </tbody>
-        </table>
+        </Table>
       </div>
     </>
   );

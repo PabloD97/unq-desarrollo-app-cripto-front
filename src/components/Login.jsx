@@ -35,8 +35,10 @@ const Login = () => {
   const history = useHistory();
 
   const login = () => {
+    setDatos(values);
+
     postLogin(values).then((result) => {
-      localStorage.setItem("email", datos.username);
+      localStorage.setItem("email", values.username);
       localStorage.setItem("token", result.data.token);
       var token = localStorage.getItem("token");
       console.log(token);

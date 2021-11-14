@@ -4,7 +4,7 @@ import { getQuotes } from "../api/cryptoactive.api";
 import { addActivity } from "../api/activity.api";
 
 import { useTranslation } from "react-i18next";
-import { Button, Modal, Form } from "react-bootstrap";
+import { Button, Modal, Form, Table } from "react-bootstrap";
 
 const Cryptoassets = () => {
   const [cryptoassets, setCryptoassets] = useState([]);
@@ -55,7 +55,7 @@ const Cryptoassets = () => {
       <Navbar />
       <h2>{t("listOfCryptoAssets")}</h2>
       <div>
-        <table className="table">
+        <Table className="table" responsive>
           <thead>
             <tr>
               <th>{t("crypto")}</th>
@@ -95,7 +95,7 @@ const Cryptoassets = () => {
               );
             })}
           </tbody>
-        </table>
+        </Table>
       </div>
       <Modal
         show={show.open}

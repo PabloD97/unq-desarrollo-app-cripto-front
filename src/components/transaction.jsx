@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NumberFormat from "react-number-format";
 import { getQuotes } from "../api/cryptoactive.api";
-import { Form, Button, Modal } from "react-bootstrap";
+import { Form, Button, Modal, Table } from "react-bootstrap";
 import Navbar from "./NavBar";
 import { useTranslation } from "react-i18next";
 import {
@@ -51,7 +51,7 @@ const Transaction = () => {
       <Navbar />
       <h2>{t("transactions")}</h2>
       <div>
-        <table className="table">
+        <Table className="table" responsive>
           <thead>
             <tr>
               <th>Id</th>
@@ -108,7 +108,7 @@ const Transaction = () => {
               );
             })}
           </tbody>
-        </table>
+        </Table>
       </div>
     </>
   );
