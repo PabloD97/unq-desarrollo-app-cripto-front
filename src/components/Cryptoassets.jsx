@@ -4,7 +4,7 @@ import { getQuotes } from "../api/cryptoactive.api";
 import { addActivity } from "../api/activity.api";
 
 import { useTranslation } from "react-i18next";
-import { Button, Modal, Form, Table } from "react-bootstrap";
+import { Button, Modal, Form, Table, Alert} from "react-bootstrap";
 
 const Cryptoassets = () => {
   const [cryptoassets, setCryptoassets] = useState([]);
@@ -17,6 +17,10 @@ const Cryptoassets = () => {
     setShow({ open: true, cryptoactive: id, action: action });
     setActivity({ ...activity, action: action, cryptoactive: id });
   };
+
+  const [message, setMessage] = useState("");
+  const [typeAlert, setTypeAlert] = useState("");
+  const [showMessageResponse, setShowMessageResponse] = useState(false);
 
   const { t } = useTranslation();
 
@@ -33,9 +37,30 @@ const Cryptoassets = () => {
   };
 
   const newActivity = () => {
-    addActivity(activity);
-    handleClose();
+    const {cryptoactive, cantidad} = activity;
+    if(cryptoactive === "BTCUSDT" && cantidad > 2){
+      console.log("error");
+      showMessage(t("BTCUSDTtrade"), true, "danger")
+    } else {
+      addActivity(activity);
+      showMessage(t("aggregateActivity"), true, "success")
+      setTimeout(() => {
+        handleClose();  
+      }, 2000);
+      
+    }
   };
+
+
+  const showMessage = (message, state, alert) => {
+    setTypeAlert(alert)
+    setMessage(message);
+    setShowMessageResponse(state);
+    
+    setTimeout(() => {
+      setShowMessageResponse(!state);
+    }, 2000);
+  }
 
   const formatCurrency = (number, locale) => {
     let currencyLocale = "";
@@ -108,9 +133,10 @@ const Cryptoassets = () => {
         </Modal.Header>
         <Modal.Body>
           <Form>
+          {(showMessageResponse)? <Alert variant={typeAlert}>{message}</Alert> : null}
             <Form.Group className="mb-3" onSubmit={handleInputChange}>
               <Form.Label htmlFor="disabledTextInput">
-                Name Crypoactive
+                {t("nameCryptoactive")}
               </Form.Label>
               <Form.Control
                 id="disabledTextInput"
@@ -120,7 +146,7 @@ const Cryptoassets = () => {
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label htmlFor="disabledTextInput">Action</Form.Label>
+              <Form.Label htmlFor="disabledTextInput">{t("action")}</Form.Label>
               <Form.Control
                 id="disabledTextInput"
                 value={show.action}
@@ -129,8 +155,8 @@ const Cryptoassets = () => {
               />
             </Form.Group>
             <Form.Group className="mb-3" onChange={handleInputChange}>
-              <Form.Label>Amount</Form.Label>
-              <Form.Control placeholder="amount" name="cantidad" />
+              <Form.Label>{t("amount")}</Form.Label>
+              <Form.Control placeholder="amount" name="cantidad" type="number"   />
             </Form.Group>
             <Button variant="secondary" onClick={handleClose}>
               {t("cancel")}
