@@ -47,6 +47,14 @@ export const TRANSLATIONS_EN = {
   cryptoactive: "Crypto active",
   noOperations: "No opetarions",
   shippingAddress: "Shipping address",
-  myTransactions: "My transactions"
+  myTransactions: "My transactions",
+  nameCryptoactive: "Name Cryptoactive",
+  aggregateActivity: "Activity added successfully",
+  BTCUSDTtrade: "You cannot buy / sell more than 2 BTCUSDT",
+  amount2: "Amount",
+  user: "User",
+  close: "Close",
+  transaction: "Transaction"
+
   
 };

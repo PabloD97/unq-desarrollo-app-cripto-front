@@ -125,30 +125,30 @@ const effectTransaction=(activityId)=>{
             })}
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Transaccion</Modal.Title>
+                <Modal.Title>{t("transaction")}</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <Table className="table" responsive>
                   <tbody>
 
                     <tr >
-                      <td>cryptoactive</td>
+                      <td>{t("crypto")}</td>
                       <td>{activitySelected.cryptoactive}</td>
                     </tr>
                     <tr >
-                      <td>Monto</td>
+                      <td>{t("amount2")}</td>
                       <td>{priceInARS(activitySelected.cryptoactive , activitySelected.cantidad)}</td>
                     </tr>
                     <tr >
-                      <td>Usuario</td>
+                      <td>{t("user")}</td>
                       <td>{activitySelected.fullNameUser}</td>
                     </tr>
                     <tr key={crypto.id}>
-                      <td>Cantidad</td>
+                      <td>{t("amount")}</td>
                       <td>{activitySelected.cantidad}</td>
                     </tr>
                     <tr key={crypto.id}>
-                      <td>Reputacion</td>
+                      <td>{t("reputation")}</td>
                       <td>{activitySelected.reputation}</td>
                     </tr>
 
@@ -157,10 +157,10 @@ const effectTransaction=(activityId)=>{
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
-                  Close
+                  {t("close")}
                 </Button>
                 <Button variant="primary" type="submit" onClick={()=>effectTransaction(activitySelected.id)}>
-                  Effect transfer
+                  {t("accept")}
                 </Button>
               </Modal.Footer>
             </Modal>
