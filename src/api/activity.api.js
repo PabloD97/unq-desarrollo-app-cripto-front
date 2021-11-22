@@ -7,7 +7,7 @@ const host = "localhost:8080";
 
 export const addActivity=(activity)=>{
     console.log(activity)
-    return axios.post(`http://${host}/addactivity`,activity)
+    return axios.post(`http://${host}/addactivity`,activity,{ headers:{'Authorization': 'Bearer ' + localStorage.getItem("token")}})
 }
 
 export const getAllActivity = () => {

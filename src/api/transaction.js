@@ -16,16 +16,19 @@ export const getTransaction = () => {
 };
 export const getTransactionUser = (user) => {
   console.log(user);
-  return axios.get(`http://${host}/usertransaction`, {
-    params: user,
-  });
+  return axios.get(`http://${host}/usertransaction`,
+  {
+    params: {email:user.email},
+   headers: { Authorization: "Bearer " + localStorage.getItem("token") }}
+
+  );
 };
 export const activityToTransaction = (id, email) => {
-  return axios.post(`http://${host}/activitytotransaction`, null, {
+  return axios.post(`http://${host}/activitytotransaction`,  {
     params: {
       emailUser: email,
       idActivity: id,
-    },
+    }, headers: { Authorization: "Bearer " + localStorage.getItem("token") }
   });
 };
 
@@ -33,7 +36,7 @@ export const confirmTransaction = (id) => {
   return axios.post(`http://${host}/confirmtransaction`, null, {
     params: {
       idTransaction: id,
-    },
+    }, headers: { Authorization: "Bearer " + localStorage.getItem("token") },
   });
 };
 

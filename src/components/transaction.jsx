@@ -25,6 +25,7 @@ const Transaction = () => {
     getTransactionUser({ email: localStorage.getItem("email") })
       .then((result) => {
         setTransaction(result.data);
+        console.log(result)
       })
       .catch(console.log);
   };
