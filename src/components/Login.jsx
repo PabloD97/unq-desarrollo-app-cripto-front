@@ -75,7 +75,7 @@ const renderAlert=()=> {
 
 
 
-          <Card  style={{ width: '50rem',height:'57rem',marginTop:"5rem"}} bg='secondary'>
+          <Card  style={{ width: '50rem',height:'57rem',marginTop:"5rem"}}  bg='ligth'>
               <Card.Img as={Image} src={imgUser} fluid={true} alt="Card image" />
 
               {renderAlert()}
