@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Button, Form, Alert } from "react-bootstrap";
+import {Button, Form, Alert, Card, Image} from "react-bootstrap";
 import { postRegister } from "../api/cryptoactive.api";
 import { useTranslation } from "react-i18next";
 import NavBarBeginning from "./NavBarBeginning";
 import { Formik } from "formik";
 import * as yup from "yup";
+import imgUser from "../img/register.png"
 
 const Register = () => {
   const { t } = useTranslation();
@@ -66,10 +67,14 @@ const Register = () => {
   };
 
   return (
-    <>
+    <div       class="row justify-content-center">
       <NavBarBeginning />
 
-      <Formik
+        <Card  style={{ width: '70rem',height:'79rem',marginTop:"5rem"}} bg='ligth'>
+
+            <Card.Img as={Image} src={imgUser} fluid={true} alt="Card image" style={{width:'40rem',margin:'auto'}}/>
+
+            <Formik
         validationSchema={schema}
         onSubmit={register}
         initialValues={{
@@ -186,23 +191,16 @@ const Register = () => {
                 {errors.wallet}
               </Form.Control.Feedback>
             </Form.Group>
+              <div className="row justify-content-center">
+                <Button type="dark" onClick={() => {setValues(values);}}>{t("register")}</Button>
+                <Button variant="dark" style={{marginTop:"1rem"}} onClick={() => { history.push("/login")}}>{t("back")}</Button>
 
-            <Button
-              type="submit"
-              onClick={() => {
-                setValues(values);
-              }}
-            >
-              {t("register")}
-            </Button>
-
-            <Link to="/login">
-              <Button variant="warning">{t("back")}</Button>
-            </Link>
+              </div>
           </Form>
         )}
       </Formik>
-    </>
+            </Card>
+    </div>
   );
 };
 

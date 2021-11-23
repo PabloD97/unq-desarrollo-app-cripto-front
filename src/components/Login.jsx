@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button,Alert,Card,Image  } from "react-bootstrap";
 import { postLogin } from "../api/cryptoactive.api";
 import { useTranslation } from "react-i18next";
 import NavBarBeginning from "./NavBarBeginning";
 import registerAll from "../script/registerUsers";
 import { Formik } from "formik";
 import * as yup from "yup";
+import imgUser from "../img/user.png"
 
 const Login = () => {
   const { t } = useTranslation();
+    const [showAlert, setShowAlert] = useState(false);
+    const [showLoginOK, setShowLoginOk] = useState(false);
 
-  const [values, setValues] = useState({});
-  const [datos, setDatos] = useState({
+    const [values, setValues] = useState({});
+    const [datos, setDatos] = useState({
     username: "",
     password: "",
   });
@@ -41,15 +44,42 @@ const Login = () => {
       localStorage.setItem("email", values.username);
       localStorage.setItem("token", result.data.token);
       var token = localStorage.getItem("token");
-      console.log(token);
-      alert("logeado con exito");
-      history.push("/cryptoassets");
-    });
-  };
 
-  return (
-    <>
+        console.log(token);
+        setTimeout(() => {
+            console.log("1 Segundo esperado")
+        }, 10000);
+        history.push("/cryptoassets");
+    }).catch(()=>{setShowAlert(true)})
+
+
+  };
+const renderAlert=()=> {
+    if (showAlert) {
+
+            return (<Alert variant="danger"  >
+                <Alert.Heading>Vaya! Parece que tenes un error en tus credenciales!</Alert.Heading>
+                <p>
+                    Verifique si sus datos son correctos y vuelva a intentarlo, si el problema persiste contactese con
+                    el
+                    administrador.
+                </p>
+            </Alert>);
+        }
+
+    }
+
+  return (<div       class="row justify-content-center">
+
       <NavBarBeginning />
+
+
+
+          <Card  style={{ width: '50rem',height:'57rem',marginTop:"5rem"}}  bg='ligth'>
+              <Card.Img as={Image} src={imgUser} fluid={true} alt="Card image" />
+
+              {renderAlert()}
+
       <Formik
         validationSchema={schema}
         onSubmit={login}
@@ -99,23 +129,29 @@ const Login = () => {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label={t("CheckMeOut")} />
+
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={() => {
-              setValues(values);
-            }}>
+
+              <div class="row justify-content-center">
+            <Button variant="dark" type="submit" onClick={() => {setValues(values);}} >
               {t("submit")}
             </Button>
-            <Link to="/register" >
-              <Button variant="secondary">{t("register")}</Button>
-            </Link>
+
+              <Button variant="dark" style={{marginTop:'0.5rem'}} onClick={() => {history.push("/register");}}>{t("register")}  </Button>
+                  <Button variant="danger" onClick={registerAlls} style={{marginTop:'0.5rem'}}>
+                      Execute script
+                  </Button>
+              </div>
+
+
           </Form>
         )}
       </Formik>
-      <Button variant="danger" onClick={registerAlls}>
-        Execute script
-      </Button>
-    </>
+    <Card.Footer>
+
+    </Card.Footer>
+          </Card>
+          </div>
   );
 };
 

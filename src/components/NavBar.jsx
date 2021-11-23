@@ -17,7 +17,12 @@ const NavBar = () => {
     i18n.changeLanguage(e.target.value);
     setText(t("changeLanguage"));
   };
+const removeSession=()=>{
+  localStorage.setItem("token","")
+  localStorage.setItem("username","")
+  localStorage.setItem("password","")
 
+}
   return (
     <>
       <Navbar bg="dark" variant="dark" expand="lg">
@@ -34,7 +39,7 @@ const NavBar = () => {
             </Nav>
             <Nav>
               
-              <Nav.Link href="/">{t("logOut")}</Nav.Link>
+              <Nav.Link href="/" onClick={removeSession}>{t("logOut")}</Nav.Link>
               <NavDropdown title={text} id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.2">
                   <Button variant="success" value="es" onClick={handleOnclick}>
