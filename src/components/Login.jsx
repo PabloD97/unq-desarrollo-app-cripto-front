@@ -75,7 +75,7 @@ const renderAlert=()=> {
 
 
 
-          <Card  style={{ width: '50rem',height:'57rem',marginTop:"5rem"}}  bg='ligth'>
+          <Card  style={{ width: '50rem',height:'63rem',marginTop:"5rem"}}  bg='ligth'>
               <Card.Img as={Image} src={imgUser} fluid={true} alt="Card image" />
 
               {renderAlert()}
@@ -132,8 +132,9 @@ const renderAlert=()=> {
 
             </Form.Group>
 
+
               <div class="row justify-content-center">
-            <Button variant="dark" type="submit" onClick={() => {setValues(values);}} >
+            <Button variant="dark" style={{marginTop:'5rem'}}type="submit" onClick={() => {setValues(values);}} >
               {t("submit")}
             </Button>
 
@@ -143,13 +144,11 @@ const renderAlert=()=> {
                   </Button>
               </div>
 
-
           </Form>
         )}
       </Formik>
-    <Card.Footer>
 
-    </Card.Footer>
+
           </Card>
           </div>
   );
