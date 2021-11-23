@@ -42,7 +42,7 @@ export const confirmTransaction = (id) => {
 
 export const transactionCanceled = (id) => {
   return axios.post(`http://${host}/cancelltransaction`, null, {
-    params: { idTransaction: id, },
+    params: { idTransaction: id, },headers: { Authorization: "Bearer " + localStorage.getItem("token") }
   });
 };
 
