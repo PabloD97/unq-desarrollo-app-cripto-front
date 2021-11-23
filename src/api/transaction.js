@@ -24,7 +24,7 @@ export const getTransactionUser = (user) => {
   );
 };
 export const activityToTransaction = (id, email) => {
-  return axios.post(`http://${host}/activitytotransaction`,  {
+  return axios.post(`http://${host}/activitytotransaction`,  null,{
     params: {
       emailUser: email,
       idActivity: id,
