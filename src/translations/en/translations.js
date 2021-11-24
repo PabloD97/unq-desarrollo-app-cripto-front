@@ -54,7 +54,9 @@ export const TRANSLATIONS_EN = {
   amount2: "Amount",
   user: "User",
   close: "Close",
-  transaction: "Transaction"
+  transaction: "Transaction",
+  executeScript: "Execute script",
+  enterEmail: "Enter you email"
 
   
 };

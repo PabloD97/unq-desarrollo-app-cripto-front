@@ -105,7 +105,7 @@ const renderAlert=()=> {
               <Form.Label>{t("email")}</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="Enter email"
+                placeholder={t("enterEmail")}
                 name="username"
                 value={values.username}
                 onChange={handleChange}
@@ -121,7 +121,7 @@ const renderAlert=()=> {
               <Form.Label>{t("password")}</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Password"
+                placeholder={t("password")}
                 name="password"
                 value={values.password}
                 onChange={handleChange}
@@ -140,7 +140,7 @@ const renderAlert=()=> {
 
               <Button variant="dark" style={{marginTop:'0.5rem'}} onClick={() => {history.push("/register");}}>{t("register")}  </Button>
                   <Button variant="danger" onClick={registerAlls} style={{marginTop:'0.5rem'}}>
-                      Execute script
+                      {t("executeScript")}
                   </Button>
               </div>
 
