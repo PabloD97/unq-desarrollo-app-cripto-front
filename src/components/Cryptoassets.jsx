@@ -39,14 +39,12 @@ const Cryptoassets = () => {
   const newActivity = () => {
       addActivity(activity)
         .then((result) => {
-          console.log(result.data)
           showMessage(result.data, true, "success");
           setTimeout(() => {
             handleClose();
           }, 2000);
         })
         .catch(error =>{
-          console.log(error.response.data);
           showMessage(error.response.data, true, "danger");
         });
     };

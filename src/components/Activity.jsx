@@ -116,6 +116,7 @@ const effectTransaction=(activityId)=>{
                     <Button
                       variant="outline-primary"
                       onClick={() => handleShow(act)}
+                      disabled={act.emailUser === localStorage.getItem("email")}
                     >
                       {t(act.action)}
                     </Button>
