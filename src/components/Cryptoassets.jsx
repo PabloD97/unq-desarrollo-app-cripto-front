@@ -44,15 +44,9 @@ const Cryptoassets = () => {
   const getCryptoassets = () => {
     getQuotes()
       .then((result) => {
-        if(result!=null){
         setCryptoassets(result.data);
-        setShowAlert(false)}
-        else{
-        setShowAlert(true)
-        }
-      })
-
-  };
+        setShowAlert(false)
+        }).catch( ()=>{setShowAlert(true)})};
 
   const newActivity = () => {
       addActivity(activity)
