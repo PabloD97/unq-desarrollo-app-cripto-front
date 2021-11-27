@@ -12,7 +12,7 @@ export const getQuotes = () => {
             return response
         })
         .catch((error) => {
-            alert("no ok")
+            return null
 
         })
 
