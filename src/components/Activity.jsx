@@ -125,7 +125,7 @@ const effectTransaction=(activityId)=>{
               );
             })}
             <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
+              <Modal.Header >
                 <Modal.Title>{t("transaction")}</Modal.Title>
               </Modal.Header>
               <Modal.Body>

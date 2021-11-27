@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { Button, Modal, Form, Table, Alert } from "react-bootstrap";
 
 const Cryptoassets = () => {
+  const [showAlert, setShowAlert] = useState(false);
   const [cryptoassets, setCryptoassets] = useState([]);
   const [activity, setActivity] = useState({
     emailUser: localStorage.getItem("email"),
@@ -17,6 +18,18 @@ const Cryptoassets = () => {
     setShow({ open: true, cryptoactive: id, action: action });
     setActivity({ ...activity, action: action, cryptoactive: id });
   };
+  const renderAlert=()=> {
+      if (showAlert) {
+
+              return (<Alert variant="danger"  >
+                  <Alert.Heading>Vaya! Parece que hay un problema con el servidor</Alert.Heading>
+                  <p>
+                   Intente  en unos minutos.
+                  </p>
+              </Alert>);
+          }
+
+      }
 
   const [message, setMessage] = useState("");
   const [typeAlert, setTypeAlert] = useState("");
@@ -32,8 +45,9 @@ const Cryptoassets = () => {
     getQuotes()
       .then((result) => {
         setCryptoassets(result.data);
+        setShowAlert(false)
       })
-      .catch(console.log);
+      .catch(setShowAlert(true));
   };
 
   const newActivity = () => {
@@ -75,7 +89,9 @@ const Cryptoassets = () => {
   return (
     <>
       <Navbar />
+
       <h2>{t("listOfCryptoAssets")}</h2>
+    {renderAlert()}
       <div>
         <Table className="table" responsive>
           <thead>
@@ -125,7 +141,7 @@ const Cryptoassets = () => {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
+        <Modal.Header >
           <Modal.Title>{t("activity")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -159,6 +175,7 @@ const Cryptoassets = () => {
                 placeholder="amount"
                 name="cantidad"
                 type="number"
+                min="0.01"
               />
             </Form.Group>
             <Button variant="secondary" onClick={handleClose}>

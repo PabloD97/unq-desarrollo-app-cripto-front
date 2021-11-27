@@ -23,7 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d1a010c-b222-41b2-8bab-b7027c30b1c0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Activity.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Activity.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Cryptoassets.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cryptoassets.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
