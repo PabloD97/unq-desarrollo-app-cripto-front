@@ -12,6 +12,7 @@ const Cryptoassets = () => {
   const [activity, setActivity] = useState({
     emailUser: localStorage.getItem("email"),
   });
+  const [on, setOn] = useState(false);
   const [show, setShow] = useState({ open: false });
   const handleClose = () => setShow({ open: false });
   const handleShow = (id, action) => {
@@ -51,14 +52,17 @@ const Cryptoassets = () => {
   const newActivity = () => {
       addActivity(activity)
         .then((result) => {
-          showMessage(result.data, true, "success");
-          setTimeout(() => {
-            handleClose();
-          }, 2000);
+          if( result.data === "Sale / purchase added successfully"){
+            setOn(true);
+            showMessage(result.data, true, "success");
+            setTimeout(() => {
+              handleClose();
+              setOn(false);
+            }, 2000);  
+          } else {
+            showMessage(result.data, true, "danger");
+          }
         })
-        .catch(error =>{
-          showMessage(error.response.data, true, "danger");
-        });
     };
 
   const showMessage = (message, state, alert) => {
@@ -179,7 +183,10 @@ const Cryptoassets = () => {
             <Button variant="secondary" onClick={handleClose}>
               {t("cancel")}
             </Button>
-            <Button variant="primary" onClick={newActivity}>
+            <Button 
+            variant="primary" 
+            onClick={newActivity}
+            disabled={on}>
               {t("confirm")}
             </Button>
           </Form>
