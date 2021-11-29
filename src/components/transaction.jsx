@@ -90,7 +90,7 @@ const Transaction = () => {
                         type="submit"
                         onClick={() => transactionOk(transaction.id)}
                       >
-                        confirm
+                        {t("confirm")}
                       </Button>
                     )}
                   </td>
@@ -101,7 +101,7 @@ const Transaction = () => {
                         type="submit"
                         onClick={() => cancelTransaction(transaction.id)}
                       >
-                        cancell
+                        {t("cancel")}
                       </Button>
                     )}
                   </td>

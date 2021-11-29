@@ -42,7 +42,7 @@ const UserList = () => {
                   <td>{user.name}</td>
                   <td>{user.lastName}</td>
                   <td>{user.numberOfOperations}</td>
-                  <td>{user.awardedPoints}</td>
+                  <td>{user.reputation}</td>
                 </tr>
               );
             })}

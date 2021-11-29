@@ -56,14 +56,16 @@ const Register = () => {
   const register = () => {
     postRegister(values)
       .then((response) => {
-        setTimeout(() => {
-          showMessage(response.data, true, "success")
-          history.push("/login");
-        }, 1000);
+        if(response.data === "Usuario registrado con exito"){
+          setTimeout(() => {
+            showMessage(response.data, true, "success")
+            history.push("/login");
+          }, 1000);
+        } else {
+          showMessage(response.data, true, "danger")
+        }
+        
       })
-      .catch((error) => {
-        showMessage(error.response.data, true, "danger")
-      });
   };
 
   return (
