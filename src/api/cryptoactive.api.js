@@ -8,16 +8,7 @@ export const getQuotes = () => {
 
 
     return  axios.get(`http://${host}/api/cryptoassets`,{  headers:{'Authorization': 'Bearer ' + localStorage.getItem("token")}})
-        .then((response) => {
-            return response
-        })
-        .catch((error) => {
-            alert("no ok")
-
-        })
-
-
-}
+     }
 export const postRegister=(user)=>{
     console.log(user)
     return axios.post(`http://${host}/register`,user)

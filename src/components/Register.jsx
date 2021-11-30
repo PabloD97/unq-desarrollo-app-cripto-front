@@ -1,84 +1,209 @@
-import React,{useState}from "react";
-import {Link, useHistory} from "react-router-dom";
-import {Button, Form} from "react-bootstrap";
-import { postRegister } from "../api/cryptoactive.api"
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import {Button, Form, Alert, Card, Image} from "react-bootstrap";
+import { postRegister } from "../api/cryptoactive.api";
+import { useTranslation } from "react-i18next";
+import NavBarBeginning from "./NavBarBeginning";
+import { Formik } from "formik";
+import * as yup from "yup";
+import imgUser from "../img/register.png"
 
 const Register = () => {
-    const [datos, setDatos] = useState({
-        name: '',
-        lastname: '',
-        email:'',
-        direction:'',
-        password:'',
-        cvu:'',
-        wallet:''
-    })
-    const handleInputChange = (event) => {
-         console.log(event.target.name)
-         console.log(event.target.value)
-        setDatos({
-            ...datos,
-            [event.target.name] : event.target.value
-        })
-    }
+  const { t } = useTranslation();
 
-    const history = useHistory();
+  const [values, setValues] = useState({});
+  const [message, setMessage] = useState("");
+  const [typeAlert, setTypeAlert] = useState("");
+  const [showMessageResponse, setShowMessageResponse] = useState(false);
 
-    const register = (e) => {
-        e.preventDefault();
-        postRegister(datos).then((result) => {
-        setTimeout(() => {
-            alert("registrado con exito")
-            history.push('/login')
-        }, 5000);
-           
-        })
-            .catch(console.log);
-    };
-    return (
-        <>
 
-                <Form onSubmit={register}>
-                    <Form.Group className="mb-3"  onChange={handleInputChange} >
-                        <Form.Label>Nombre</Form.Label>
-                        <Form.Control type="string" placeholder="Ingrese su nombre" name="name" />
-                    </Form.Group>
-                    <Form.Group className="mb-3"   onChange={handleInputChange}>
-                        <Form.Label>Apellido</Form.Label>
-                        <Form.Control type="string" placeholder="Ingrese su nombre" name="lastname"/>
-                    </Form.Group>
-                    <Form.Group className="mb-3"   onChange={handleInputChange}>
-                    <Form.Label>Email </Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" name="email"/>
-                    </Form.Group>
-                    <Form.Group className="mb-3"   onChange={handleInputChange}>
-                        <Form.Label>Direccion</Form.Label>
-                        <Form.Control type="string" placeholder="Ingrese su direccion" name="direction"/>
-                    </Form.Group>
-                    <Form.Group className="mb-3"  onChange={handleInputChange}>
-                    <Form.Label>Contraseña</Form.Label>
-                    <Form.Control type="password" placeholder="Ingrese su contraseña"  name="password" />
-                </Form.Group>
-                    <Form.Group className="mb-3"   onChange={handleInputChange}>
-                        <Form.Label>CVU</Form.Label>
-                        <Form.Control type="string" placeholder="Ingrese su CVU" name="cvu"/>
-                    </Form.Group>
-                    <Form.Group className="mb-3"   onChange={handleInputChange}>
-                        <Form.Label>Billetera</Form.Label>
-                        <Form.Control type="string" placeholder="Ingrese su Billetera" name="wallet" />
-                    </Form.Group>
+  const history = useHistory();
 
-                <Button variant="primary" type="submit">
-                    Registrarme
-                </Button>
-                <Link to = "/login">
-                     <Button variant="warning">
-                         Back
-                    </Button>
-                </Link>
-            </Form>
-        </>
-    )
-}
+  const schema = yup.object().shape({
+    name: yup
+      .string()
+      .required()
+      .min(4, `Minimo 4 caracteres`)
+      .max(30, `Maximo 30 caracteres`),
+    lastname: yup
+      .string()
+      .required()
+      .min(4, `Minimo 4 caracteres`)
+      .max(30, `Maximo 30 caracteres`),
+    email: yup.string().email().required(),
+    direction: yup.string().required().max(30, `Maximo 30 caracteres`),
+    password: yup.string().required().min(8, `Minimo 8 caracteres`),
+    cvu: yup
+      .string()
+      .required()
+      .length(22, `El valor debe ser de 22 caracteres`),
+    wallet: yup
+      .string()
+      .required()
+      .length(8, `El valor debe ser de 8 caracteres`),
+  });
+
+  const showMessage = (message, state, alert) => {
+    setTypeAlert(alert)
+    setMessage(message);
+    setShowMessageResponse(state);
+    
+    setTimeout(() => {
+      setShowMessageResponse(!state);
+    }, 2000);
+  }
+
+  const register = () => {
+    postRegister(values)
+      .then((response) => {
+        if(response.data === "Usuario registrado con exito"){
+          setTimeout(() => {
+            showMessage(response.data, true, "success")
+            history.push("/login");
+          }, 1000);
+        } else {
+          showMessage(response.data, true, "danger")
+        }
+        
+      })
+  };
+
+  return (
+    <div       class="row justify-content-center">
+      <NavBarBeginning />
+
+        <Card  style={{ width: '70rem',height:'79rem',marginTop:"5rem"}} bg='ligth'>
+
+            <Card.Img as={Image} src={imgUser} fluid={true} alt="Card image" style={{width:'40rem',margin:'auto'}}/>
+
+            <Formik
+        validationSchema={schema}
+        onSubmit={register}
+        initialValues={{
+          name: "",
+          lastname: "",
+          email: "",
+          direction: "",
+          password: "",
+          cvu: "",
+          wallet: "",
+        }}
+      >
+        {({
+          handleSubmit,
+          handleChange,
+          handleBlur,
+          values,
+          touched,
+          isValid,
+          errors,
+        }) => (
+          <Form noValidate onSubmit={handleSubmit}>
+            {(showMessageResponse)? <Alert variant={typeAlert}>{message}</Alert> : null}
+            <Form.Group className="mb-3">
+              <Form.Label>{t("name")}</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={values.name}
+                placeholder={t("enterYour") + t("name")}
+                onChange={handleChange}
+                isInvalid={!!errors.name}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.name}
+              </Form.Control.Feedback>{" "}
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>{t("lastname")}</Form.Label>
+              <Form.Control
+                type="text"
+                name="lastname"
+                value={values.lastname}
+                onChange={handleChange}
+                isInvalid={!!errors.lastname}
+                placeholder={t("enterYour") + t("lastname")}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>{t("email")} </Form.Label>
+              <Form.Control
+                type="email"
+                placeholder={t("enterYour") + t("email")}
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+                isInvalid={!!errors.email}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>{t("address")}</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder={t("enterYour") + t("address")}
+                name="direction"
+                onChange={handleChange}
+                isInvalid={!!errors.direction}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.direction}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>{t("password")}</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder={t("enterYour") + t("password")}
+                name="password"
+                value={values.password}
+                onChange={handleChange}
+                isInvalid={!!errors.password}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.password}
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>CVU</Form.Label>
+              <Form.Control
+                type="string"
+                placeholder={t("enterYour") + "CVU"}
+                name="cvu"
+                value={values.cvu}
+                onChange={handleChange}
+                isInvalid={!!errors.cvu}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.cvu}
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>{t("wallet")}</Form.Label>
+              <Form.Control
+                type="string"
+                placeholder={t("enterYour") + t("wallet")}
+                name="wallet"
+                value={values.wallet}
+                onChange={handleChange}
+                isInvalid={!!errors.wallet}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.wallet}
+              </Form.Control.Feedback>
+            </Form.Group>
+              <div className="row justify-content-center">
+                <Button type="dark" onClick={() => {setValues(values);}}>{t("register")}</Button>
+                <Button variant="dark" style={{marginTop:"1rem"}} onClick={() => { history.push("/login")}}>{t("back")}</Button>
+
+              </div>
+          </Form>
+        )}
+      </Formik>
+            </Card>
+    </div>
+  );
+};
 
 export default Register;
